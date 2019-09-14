@@ -1,13 +1,10 @@
 const mongoose = require('mongoose');
 
-const userSchema = new mongoose.Schema({
-    username: {
-        type: String,
-        required: true,
-        unique: true,
-        trim: true,
-        minlength: 4
-    }
+const exerciseSchema = new mongoose.Schema({
+    username: {type: String, required: true},
+    description: {type: String, required: true},
+    reps: {type: Number, required: true },
+    weight: {type: Number, required: true}
 }, {
     timestamps: true
 });
