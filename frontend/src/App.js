@@ -1,13 +1,13 @@
 import React from 'react';
 import { BrowserRouter as Router, Route} from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Navbar from './components/navbar';
+import Header from './components/header';
 import LandingPage from './components/landing'
 
 function App() {
   return (
       <Router>
-          <Navbar/>
+          <Header/>
           <Route path="/" exact component={LandingPage}/>
       </Router>
 
