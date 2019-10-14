@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const mongoose = require('mongoose');
 let User = require('../models/user');
 
 router.route('/').get((req, res) =>{
@@ -8,9 +9,11 @@ router.route('/').get((req, res) =>{
 });
 
 router.route('/add').post((req, res) =>{
-    const username = req.body.username;
 
-    const newUser = new User({username});
+    const newUser = new User({
+        _id: new mongoose.Types.ObjectId(),
+        username: req.body.username
+    });
 
     newUser.save()
         .then(() => res.json('User added!'))
