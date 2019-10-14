@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import Link from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { ListGroup } from 'react-bootstrap';
 
 const h1 = {
     textAlign: "center",
     paddingTop: "2vh"
+}
+
+const listGroup = {
+    marginTop: "1vh",
+    paddingTop: "3vh"
 }
 
 class ExercisesPage extends Component {
@@ -34,7 +39,15 @@ class ExercisesPage extends Component {
                 <h1 style={h1}>Exercises</h1>
                 <ListGroup>
                 {this.state.exerciseCategories.map(category =>
-                    <ListGroup.Item action href={"/exercises/"+category.name}>{category.name}</ListGroup.Item>
+                    <ListGroup.Item>
+                        <Link to={{
+                                pathname: "/exercises/"+category.name,
+                                state: {
+                                    category: category.name,
+                                    categoryId: category.id
+                                }
+                            }}>{category.name}</Link>
+                    </ListGroup.Item>
                 )}
                 </ListGroup>
             </div>
