@@ -15,8 +15,8 @@ class Header extends Component {
             <Nav.Link href="/log">Log</Nav.Link>
             <Nav.Link href="/exercises">Exercises</Nav.Link>
             </Nav>
-            <Nav.Link href="/sign-up">Sign Up</Nav.Link>
-            <Nav.Link href="/log-in">Log In</Nav.Link>
+            {/*<Nav.Link href="/sign-up">Sign Up</Nav.Link>
+            <Nav.Link href="/log-in">Log In</Nav.Link>*/}
             </Navbar.Collapse>
             </Navbar>
 
