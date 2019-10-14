@@ -8,6 +8,9 @@ const h1 = {
 class ExercisesPage extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            exercises: []
+        }
     }
 
     componentDidMount() {
