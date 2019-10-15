@@ -8,16 +8,14 @@ router.route('/').get((req, res) => {
 });
 
 router.route('/add').post((req, res) => {
-    const username = req.body.username;
-    const title = req.body.title;
+    const skeleton = req.body.skeleton;
     const date = Date.parse(req.body.date);
     const exercises = req.body.exercises;
 
     const newWorkout = new Workout({
-        username,
-        title,
-        date,
-        exercises
+        skeleton,
+        exercises,
+        date
     });
 
     newWorkout.save()
