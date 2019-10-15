@@ -7,13 +7,13 @@ router.route('/').get((req, res) =>{
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
-router.route('/add').post((req, res) =>{
+router.route('/create').post((req, res) =>{
     const title = req.body.title;
     const exercises = req.body.exercises;
 
     const newSkeleton = new Skeleton({
         title,
-        exercises,
+        exercises
     });
 
     newSkeleton.save()
