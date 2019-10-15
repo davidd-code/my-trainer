@@ -8,9 +8,21 @@ const heading = {
     paddingTop: "2vh"
 }
 
-const img = {
-    height: "3em"
+const submitBtn = {
+    width: "25vh"
 }
+
+const textArea = {
+    width: "100%",
+    marginTop: "2vh",
+}
+
+const submitBtnDiv = {
+    textAlign: "center",
+    marginTop: "1vh",
+    marginBottom: "1vh"
+}
+
 class WorkoutExercisesPage extends Component {
     constructor(props) {
         super(props);
@@ -20,6 +32,7 @@ class WorkoutExercisesPage extends Component {
             exercises: [],
             exerciseImages: [],
         }
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     componentDidMount() {
@@ -39,22 +52,34 @@ class WorkoutExercisesPage extends Component {
         console.log("CLICKED");
     }
 
+    handleSubmit = event => {
+        // const url = "http://localhost:5000/workout//new";
+    }
+
     render() {
         return(
             <div className="container">
                 <h2 style={heading}>Create Your Workout</h2>
+                <form>
+                <div>
+                    <input style={textArea} type="text" placeholder="Enter a name for this workout"/>
+                </div>
                 <p style={heading}>Select from a list of {this.state.category} Exercises</p>
-
-
-                <ListGroup>
-                {this.state.exercises.map(exercise =>
-                    <ListGroup.Item>
-                        <div onClick={this.toggleExercise} key={exercise.id}>
-                            {exercise.name}
-                        </div>
-                    </ListGroup.Item>
-                )}
-                </ListGroup>
+                    <ListGroup>
+                    {this.state.exercises.map(exercise =>
+                        <ListGroup.Item>
+                            <div key={exercise.id}>
+                                <input type="checkbox" value={exercise.name}/>{exercise.name}
+                            </div>
+                        </ListGroup.Item>
+                    )}
+                    </ListGroup>
+                    <div style={submitBtnDiv}>
+                        <Button style={submitBtn} variant="primary" type="submit" onClick={this.handleSubmit}>
+                            CREATE
+                        </Button>
+                    </div>
+                </form>
             </div>
         )
     }
