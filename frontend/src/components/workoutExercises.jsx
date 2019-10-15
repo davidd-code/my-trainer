@@ -66,6 +66,7 @@ class WorkoutExercisesPage extends Component {
         })
         .then(res => {
             console.log(res.data);
+            this.props.history.push('/workout')
         })
         .catch(err => console.log(err.response));
     }
