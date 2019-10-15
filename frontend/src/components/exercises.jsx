@@ -10,7 +10,6 @@ const h1 = {
 
 const listGroup = {
     marginTop: "1vh",
-    paddingTop: "3vh"
 }
 
 class ExercisesPage extends Component {
@@ -39,15 +38,17 @@ class ExercisesPage extends Component {
                 <h1 style={h1}>Exercises</h1>
                 <ListGroup>
                 {this.state.exerciseCategories.map(category =>
-                    <ListGroup.Item>
-                        <Link to={{
-                                pathname: "/exercises/"+category.name,
-                                state: {
-                                    category: category.name,
-                                    categoryId: category.id
-                                }
-                            }}>{category.name}</Link>
-                    </ListGroup.Item>
+                    <Link style={listGroup} to={{
+                            pathname: "/exercises/"+category.name,
+                            state: {
+                                category: category.name,
+                                categoryId: category.id
+                            }
+                        }}>
+                        <ListGroup.Item>
+                            {category.name}
+                        </ListGroup.Item>
+                    </Link>
                 )}
                 </ListGroup>
             </div>
