@@ -1,0 +1,24 @@
+.heading {
+    text-align: center;
+    padding-top: 2vh;
+}
+
+input {
+    width: 15vh
+
+}
+
+.submitBtn {
+    width: 25vh
+}
+
+.textArea {
+    width: 100%;
+    margin-top: 2vh;
+}
+
+.submitBtnDiv {
+    text-align: center;
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+}

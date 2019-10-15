@@ -2,32 +2,14 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { Table, ListGroup, Button } from 'react-bootstrap';
+import '../styles/workout-form.css';
 
-const heading = {
-    textAlign: "center",
-    paddingTop: "2vh"
-}
-
-const submitBtn = {
-    width: "25vh"
-}
-
-const textArea = {
-    width: "100%",
-    marginTop: "2vh",
-}
-
-const submitBtnDiv = {
-    textAlign: "center",
-    marginTop: "1vh",
-    marginBottom: "1vh"
-}
 
 class WorkoutStartPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-
+            skeletonExercises: this.props.location.state.exercises
         }
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -56,14 +38,54 @@ class WorkoutStartPage extends Component {
     render() {
         return(
             <div className="container">
-                <h2 style={heading}>{this.props.location.state.title}</h2>
+                <h2 className="heading">{this.props.location.state.title}</h2>
                 <form>
-                <div>
-                    <input name="title" style={textArea} type="text" placeholder="Enter a name for this workout" onChange={this.handleChange}/>
-                </div>
-                    <div style={submitBtnDiv}>
-                        <Button style={submitBtn} variant="primary" type="submit" onClick={this.handleSubmit}>
-                            CREATE
+                    {this.state.skeletonExercises.map(exercise =>
+                        <Table bordered hover size="sm">
+                            <thead>
+                                <tr>
+                                    <th colSpan="3">{exercise}</th>
+                                </tr>
+                                <tr>
+                                    <th>Set #</th>
+                                    <th>Weight (Kg)</th>
+                                    <th>Reps</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>
+                                        <input type="number"></input>
+                                    </td>
+                                    <td>
+                                        <input type="number"></input>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>
+                                        <input type="number"></input>
+                                    </td>
+                                    <td>
+                                        <input type="number"></input>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>
+                                        <input type="number"></input>
+                                    </td>
+                                    <td>
+                                        <input type="number"></input>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </Table>
+                    )}
+                    <div className="submitBtnDiv">
+                        <Button className="submitBtn" variant="primary" type="submit" onClick={this.handleSubmit}>
+                            SAVE WORKOUT
                         </Button>
                     </div>
                 </form>
