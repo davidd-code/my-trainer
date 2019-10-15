@@ -27,7 +27,7 @@ class WorkoutListPage extends Component {
             <div className="container">
                 <h2 style={heading}>Workouts</h2>
                 <ButtonToolbar>
-                    <Button href="/workouts/create/" style={button} variant="primary" block>Create Workout</Button>
+                    <Button href="/workout/create/" style={button} variant="primary" block>Create Workout</Button>
                 </ButtonToolbar>
             </div>
         )
