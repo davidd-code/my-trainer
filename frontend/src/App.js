@@ -4,9 +4,10 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Header from './components/header';
 import LandingPage from './components/landing';
 import ExercisesPage from './components/exercises';
-import ExerciseListPage from './components/exerciseList'
-import WorkoutListPage from './components/workoutList'
-import WorkoutCreatePage from './components/workoutCreate'
+import ExerciseListPage from './components/exerciseList';
+import WorkoutListPage from './components/workoutList';
+import WorkoutCreatePage from './components/workoutCreate';
+import WorkoutExercisesPage from './components/workoutExercises';
 
 function App() {
   return (
@@ -15,8 +16,9 @@ function App() {
           <Route path="/" exact component={LandingPage}/>
           <Route path="/exercises" exact component={ExercisesPage}/>
           <Route path="/exercises/:category" exact component={ExerciseListPage}/>
-          <Route path="/workouts/" exact component={WorkoutListPage}/>
-          <Route path="/workouts/create" exact component={WorkoutCreatePage}/>
+          <Route path="/workout/" exact component={WorkoutListPage}/>
+          <Route path="/workout/create" exact component={WorkoutCreatePage}/>
+          <Route path="/workout/create/:category" exact component={WorkoutExercisesPage}/>
       </Router>
 
   );
