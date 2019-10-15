@@ -54,7 +54,7 @@ class WorkoutListPage extends Component {
                                     title: workout.title
                                 }
 
-                            }}>
+                            }} key={workout._id}>
                             <ListGroup.Item>
                                 {workout.title}
                             </ListGroup.Item>

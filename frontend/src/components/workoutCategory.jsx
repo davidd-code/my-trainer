@@ -13,7 +13,7 @@ const listGroup = {
     paddingTop: "3vh"
 }
 
-class WorkoutCreatePage extends Component {
+class WorkoutCategoryPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -47,7 +47,7 @@ class WorkoutCreatePage extends Component {
                                     category: category.name,
                                     categoryId: category.id
                                 }
-                            }}>{category.name}</Link>
+                            }} key={category.id}>{category.name}</Link>
                     </ListGroup.Item>
                 )}
                 </ListGroup>
@@ -56,4 +56,4 @@ class WorkoutCreatePage extends Component {
     }
 }
 
-export default WorkoutCreatePage;
+export default WorkoutCategoryPage;
