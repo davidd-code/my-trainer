@@ -33,6 +33,7 @@ class WorkoutExercisesPage extends Component {
             exerciseImages: [],
             title: '',
             selectedExercises: [],
+            postExercises: []
 
         }
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -51,18 +52,35 @@ class WorkoutExercisesPage extends Component {
 
     }
 
-    toggleExercise() {
-        console.log("CLICKED");
-    }
-
     handleSubmit = event => {
         event.preventDefault();
         const url = "http://localhost:5000/workouts/skeleton/create";
-        console.log(event.title);
+
+        const title = this.state.title;
+        const exercises = this.state.selectedExercises;
+        var postArr = {};
+        this.state.exercises.forEach(index => {
+            if(exercises.includes(index.id)) {
+                postArr[index.id] = index.name;
+            }
+        })
+
+        var keys = Object.keys(postArr);
+        console.log(keys);
+        var postData = [];
+        keys.forEach(index => {
+            console.log(index);
+            postData.push({
+                exerciseId: index,
+                name: postArr[index]
+            })
+        });
+
+        console.log(postData);
 
         axios.post(url, {
             title: this.state.title,
-            exercises: this.state.selectedExercises
+            exercises: postData
         })
         .then(res => {
             console.log(res.data);
@@ -78,7 +96,7 @@ class WorkoutExercisesPage extends Component {
     handleCheckList = event => {
         if(!this.state.selectedExercises.includes(event.target.value)) {
             this.setState({
-                selectedExercises: this.state.selectedExercises.concat(event.target.value)
+                selectedExercises: this.state.selectedExercises.concat(parseInt(event.target.value))
             });
         } else {
             var index = this.state.selectedExercises.indexOf(event.target.value);
@@ -106,7 +124,7 @@ class WorkoutExercisesPage extends Component {
                     {this.state.exercises.map(exercise =>
                         <ListGroup.Item>
                             <div key={exercise.id}>
-                                <input name="exercisez" type="checkbox" value={exercise.name} onChange={this.handleCheckList}/>{exercise.name}
+                                <input name="exercisez" type="checkbox" value={exercise.id} onChange={this.handleCheckList}/>{exercise.name}
                             </div>
                         </ListGroup.Item>
                     )}

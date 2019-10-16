@@ -48,7 +48,7 @@ class WorkoutListPage extends Component {
                     <ListGroup.Item variant="light">Saved Workouts</ListGroup.Item>
                     {this.state.savedWorkouts.map(workout =>
                         <Link style={listGroup} to={{
-                                pathname: "/workout/"+workout._id,
+                                pathname: "/workout/start/"+workout._id,
                                 state: {
                                     exercises: workout.exercises,
                                     title: workout.title

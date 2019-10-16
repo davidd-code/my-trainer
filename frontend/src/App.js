@@ -20,7 +20,7 @@ function App() {
           <Route path="/workout/" exact component={WorkoutListPage}/>
           <Route path="/workout/create" exact component={WorkoutCategoryPage}/>
           <Route path="/workout/create/:category" exact component={WorkoutExercisesPage}/>
-          <Route path="/workout/:id" exact component={WorkoutStartPage}/>
+          <Route path="/workout/start/:id" exact component={WorkoutStartPage}/>
       </Router>
 
   );
