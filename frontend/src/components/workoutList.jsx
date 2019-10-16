@@ -51,7 +51,8 @@ class WorkoutListPage extends Component {
                                 pathname: "/workout/start/"+workout._id,
                                 state: {
                                     exercises: workout.exercises,
-                                    title: workout.title
+                                    title: workout.title,
+                                    workoutId: workout._id
                                 }
 
                             }} key={workout._id}>

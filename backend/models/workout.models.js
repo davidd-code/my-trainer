@@ -3,13 +3,14 @@ const Schema = mongoose.Schema;
 
 const workoutSchema = new mongoose.Schema({
     skeleton: { type: Schema.Types.ObjectId, ref: 'Skeleton' },
-    exercises: [{
+    setInfo: [{
+        exercise: {type: Schema.Types.ObjectId, ref: 'Exercise'},
         title: String,
         reps: Number,
-        sets: Number,
         weight: Number
-    }],
-    date: { type: Date, required: true },
+    }]
+}, {
+    timestamps: true
 });
 
 

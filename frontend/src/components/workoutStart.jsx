@@ -9,7 +9,11 @@ class WorkoutStartPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            skeletonExercises: this.props.location.state.exercises
+            skeletonExercises: this.props.location.state.exercises,
+            weight: '',
+            reps: '',
+            exId: '',
+            workoutData: []
         }
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -17,16 +21,19 @@ class WorkoutStartPage extends Component {
 
     handleSubmit = event => {
         event.preventDefault();
-        const url = "http://localhost:5000/workouts/skeleton/create";
-        console.log(event.title);
+        const url = "http://localhost:5000/workouts/add";
+
+        const postSkeleton = this.props.location.state.workoutId;
+        const postSet = this.state.workoutData;
 
         axios.post(url, {
-            title: this.state.title,
-            exercises: this.state.selectedExercises
+            skeleton: this.props.location.state.workoutId,
+            date: new Date(),
+            set: this.state.workoutData
         })
         .then(res => {
-            console.log(res.data);
-            this.props.history.push('/workout')
+        console.log(res.data);
+        this.props.history.push('/workout')
         })
         .catch(err => console.log(err.response));
     }
@@ -35,53 +42,78 @@ class WorkoutStartPage extends Component {
         this.setState({[event.target.name] : event.target.value});
     }
 
+    saveField = event => {
+        var set = {
+            exercise: event.target.name,
+            name: event.target.value,
+            reps: this.state.reps,
+            weight: this.state.weight
+        }
+        this.setState({
+            workoutData: this.state.workoutData.concat(set)
+        })
+
+    }
+
     render() {
         return(
             <div className="container">
                 <h2 className="heading">{this.props.location.state.title}</h2>
                 <form>
                     {this.state.skeletonExercises.map(exercise =>
-                        <Table bordered hover size="sm">
+                        <Table bordered hover>
                             <thead>
                                 <tr>
-                                    <th colSpan="3">{exercise}</th>
+                                    <th colSpan="4">{exercise.name}</th>
                                 </tr>
                                 <tr>
                                     <th>Set #</th>
-                                    <th>Weight (Kg)</th>
+                                    <th>Weight</th>
                                     <th>Reps</th>
+                                    <th>Save</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <td>1</td>
                                     <td>
-                                        <input type="number"></input>
+                                        <input name="reps" type="number" onChange={this.handleChange}></input>
                                     </td>
                                     <td>
-                                        <input type="number"></input>
+                                        <input name="weight" type="number" onChange={this.handleChange}></input>
+                                    </td>
+                                    <td>
+                                        <Button name={exercise._id} variant="primary" onClick={this.saveField} value={exercise.name}>Save</Button>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>2</td>
                                     <td>
-                                        <input type="number"></input>
+                                        <input name="reps" type="number" onChange={this.handleChange}></input>
                                     </td>
                                     <td>
-                                        <input type="number"></input>
+                                        <input name="weight" type="number" onChange={this.handleChange}></input>
+                                    </td>
+                                    <td>
+                                        <Button name={exercise._id} variant="primary" onClick={this.saveField} value={exercise.name}>Save</Button>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>3</td>
                                     <td>
-                                        <input type="number"></input>
+                                        <input name="reps" type="number" onChange={this.handleChange}></input>
                                     </td>
                                     <td>
-                                        <input type="number"></input>
+                                        <input name="weight" type="number" onChange={this.handleChange}></input>
+                                    </td>
+                                    <td>
+                                        <Button name={exercise._id} variant="primary" onClick={this.saveField} value={exercise.name}>Save</Button>
                                     </td>
                                 </tr>
                             </tbody>
                         </Table>
+
+
                     )}
                     <div className="submitBtnDiv">
                         <Button className="submitBtn" variant="primary" type="submit" onClick={this.handleSubmit}>
