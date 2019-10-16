@@ -21,4 +21,10 @@ router.route('/add').post((req, res) => {
     .catch(err => console.log(err));
 });
 
+router.route('/:id').get((req, res) => {
+    Workout.findById(req.params.id)
+        .then(exercise => res.json(exercise))
+        .catch(err => res.status(400).json('Error: ' + err));
+});
+
 module.exports = router;

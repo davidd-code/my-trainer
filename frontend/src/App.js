@@ -8,7 +8,10 @@ import ExerciseListPage from './components/exerciseList';
 import WorkoutListPage from './components/workoutList';
 import WorkoutCategoryPage from './components/workoutCategory';
 import WorkoutExercisesPage from './components/workoutExercises';
-import WorkoutStartPage from './components/workoutStart'
+import WorkoutStartPage from './components/workoutStart';
+import WorkoutLogPage from './components/logList';
+import LogDatePage from './components/logData';
+import ExerciseDataPage from './components/exerciseTableData'
 
 function App() {
   return (
@@ -21,6 +24,9 @@ function App() {
           <Route path="/workout/create" exact component={WorkoutCategoryPage}/>
           <Route path="/workout/create/:category" exact component={WorkoutExercisesPage}/>
           <Route path="/workout/start/:id" exact component={WorkoutStartPage}/>
+          <Route path="/log/" exact component={WorkoutLogPage}/>
+          <Route path="/log/:id" exact component={LogDatePage}/>
+          <Route path="/log/exercise/:id" exact component={ExerciseDataPage}/>
       </Router>
 
   );
