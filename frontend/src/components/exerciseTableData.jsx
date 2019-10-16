@@ -11,8 +11,10 @@ class ExerciseDataPage extends Component {
         this.state = {
             weight: '',
             reps: '',
-            exId: '',
-            workoutData: []
+            exId: props.location.state.exerciseId,
+            savedWorkouts: [],
+            workoutData: [],
+            matchingExercises: []
         }
     }
 
@@ -36,14 +38,36 @@ class ExerciseDataPage extends Component {
         return(
             <div className="container">
                 <h2 className="heading"></h2>
-                {for(var key in this.state.savedWorkouts) {
-                }}
+                <Table>
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Weight</th>
+                            <th>Reps</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {this.state.savedWorkouts.map(workout =>{
+                            workout.setInfo.map(exercise => {
+                                if(exercise.exercise == this.state.exId) {
+                                    this.state.matchingExercises.push(exercise);
+                                }
+                            })
+                        })}
 
-                    <div className="submitBtnDiv">
-                        <Button className="submitBtn" variant="primary" type="submit" onClick={this.handleSubmit}>
-                            SAVE WORKOUT
-                        </Button>
-                    </div>
+                        {this.state.matchingExercises.map(match => {
+                            return(
+                                <tr>
+                                    <td>row</td>
+                                    <td>{match.weight}</td>
+                                    <td>{match.reps}</td>
+                                </tr>
+
+                            );
+                        })}
+                    </tbody>
+                </Table>
+
             </div>
         )
     }
