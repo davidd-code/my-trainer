@@ -54,7 +54,8 @@ class WorkoutExercisesPage extends Component {
 
     handleSubmit = event => {
         event.preventDefault();
-        const url = "http://localhost:5000/workouts/skeleton/create";
+        const server = "http://ec2-54-206-50-53.ap-southeast-2.compute.amazonaws.com:5000"
+        const url = server + "/workouts/skeleton/create";
 
         const title = this.state.title;
         const exercises = this.state.selectedExercises;

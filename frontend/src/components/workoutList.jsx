@@ -24,7 +24,8 @@ class WorkoutListPage extends Component {
     }
 
     componentDidMount() {
-        const url = "http://localhost:5000/workouts/skeleton/";
+        const server = "http://ec2-54-206-50-53.ap-southeast-2.compute.amazonaws.com:5000"
+        const url = server + "/workouts/skeleton/";
         axios.get(url)
         .then(res => {
             this.setState({
