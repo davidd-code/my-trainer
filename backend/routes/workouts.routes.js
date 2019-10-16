@@ -9,18 +9,16 @@ router.route('/').get((req, res) => {
 
 router.route('/add').post((req, res) => {
     const skeleton = req.body.skeleton;
-    const date = Date.parse(req.body.date);
-    const exercises = req.body.exercises;
+    const setInfo = req.body.set;
 
     const newWorkout = new Workout({
         skeleton,
-        exercises,
-        date
+        setInfo
     });
 
     newWorkout.save()
     .then(() => res.json('Workout Added!'))
-    .catch(err => res.status(400).json('Error: ' + err));
+    .catch(err => console.log(err));
 });
 
 module.exports = router;
