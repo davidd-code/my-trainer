@@ -16,7 +16,7 @@ class LogDataPage extends Component {
     }
 
     componentDidMount() {
-        const server = "http://ec2-54-206-50-53.ap-southeast-2.compute.amazonaws.com:5000"
+        const server = "http://localhost:5000"
         const url = server + "/workouts/" + this.state.workoutId;
         axios.get(url)
         .then(res => {
@@ -41,7 +41,8 @@ class LogDataPage extends Component {
                                 pathname: "/log/exercise/"+exercise._id,
                                 state: {
                                     skeletonId: this.state.workoutId,
-                                    exerciseId: exercise._id
+                                    exerciseId: exercise._id,
+                                    exerciseName: exercise.name
                                 }
 
                             }} key={exercise._id}>

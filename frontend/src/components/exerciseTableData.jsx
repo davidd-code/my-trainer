@@ -4,13 +4,14 @@ import { Link } from 'react-router-dom';
 import { Table, ListGroup, Button } from 'react-bootstrap';
 import '../styles/workout-form.css';
 
-
+var rowCounter = 0;
 class ExerciseDataPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
             weight: '',
             reps: '',
+            exName: props.location.state.exerciseName,
             exId: props.location.state.exerciseId,
             savedWorkouts: [],
             workoutData: [],
@@ -19,7 +20,7 @@ class ExerciseDataPage extends Component {
     }
 
     componentDidMount() {
-        const server = "http://ec2-54-206-50-53.ap-southeast-2.compute.amazonaws.com:5000"
+        const server = "http://localhost:5000"
         const url = server + "/workouts/";
         axios.get(url)
         .then(res => {
@@ -37,7 +38,7 @@ class ExerciseDataPage extends Component {
     render() {
         return(
             <div className="container">
-                <h2 className="heading"></h2>
+                <h2 className="heading">{this.state.exName}</h2>
                 <Table>
                     <thead>
                         <tr>
@@ -58,7 +59,7 @@ class ExerciseDataPage extends Component {
                         {this.state.matchingExercises.map(match => {
                             return(
                                 <tr>
-                                    <td>row</td>
+                                    <td>{++rowCounter}</td>
                                     <td>{match.weight}</td>
                                     <td>{match.reps}</td>
                                 </tr>

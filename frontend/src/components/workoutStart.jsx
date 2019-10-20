@@ -21,7 +21,7 @@ class WorkoutStartPage extends Component {
 
     handleSubmit = event => {
         event.preventDefault();
-        const server = "http://ec2-54-206-50-53.ap-southeast-2.compute.amazonaws.com:5000"
+        const server = "http://localhost:5000"
         const url = server + "/workouts/add";
 
         const postSkeleton = this.props.location.state.workoutId;
